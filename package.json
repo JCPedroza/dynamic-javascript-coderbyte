@@ -1,0 +1,32 @@
+{
+  "name": "dynamic-javascript",
+
+  "version": "0.0.1",
+
+  "description": "Dynamic programming patterns in JavaScript",
+
+  "main": "index.js",
+
+  "scripts": {
+    "test": "npx standard && npx jest"
+  },
+
+  "keywords": [
+    "dynamic-programming"
+  ],
+
+  "author": "JCPedroza",
+
+  "license": "MIT",
+
+  "devDependencies": {
+    "jest": "^27.3.1",
+    "standard": "^16.0.4"
+  },
+
+  "standard": {
+    "envs": [
+      "jest"
+    ]
+  }
+}
