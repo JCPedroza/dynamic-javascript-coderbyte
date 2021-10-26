@@ -6,5 +6,7 @@
 
 <p>Implemented Algorithms (including dynamic programming implementations):</p>
 <ul>
-  <li>Calculate the nth Fibonacci number</li>
+  <li><a href="https://github.com/JCPedroza/dynamic-javascript-coderbyte/tree/master/fibonacci">
+    Calculate the nth Fibonacci number
+  </a></li>
 </ul>
