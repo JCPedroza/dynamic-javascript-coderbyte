@@ -8,4 +8,7 @@ const fib = (n) => {
   return fibNums.pop()
 }
 
-module.exports = fib
+module.exports = {
+  fun: fib,
+  id: 'for loop'
+}

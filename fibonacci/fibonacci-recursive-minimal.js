@@ -1,3 +1,6 @@
 const fib = (n) => n < 3 ? 1 : fib(n - 1) + fib(n - 2)
 
-module.exports = fib
+module.exports = {
+  fun: fib,
+  id: 'minimal'
+}

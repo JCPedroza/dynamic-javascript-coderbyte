@@ -3,4 +3,7 @@ const fib = (n) => {
   return fib(n - 1) + fib(n - 2)
 }
 
-module.exports = fib
+module.exports = {
+  fun: fib,
+  id: 'recursive'
+}

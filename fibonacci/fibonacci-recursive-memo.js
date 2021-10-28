@@ -6,4 +6,7 @@ const fib = (n, memo = {}) => {
   return memo[n]
 }
 
-module.exports = fib
+module.exports = {
+  fun: fib,
+  id: 'recursive memoization'
+}
