@@ -10,3 +10,21 @@
     Calculate the nth Fibonacci number
   </a></li>
 </ul>
+
+<h3>Install dependencies</h3>
+
+```
+npm install
+```
+
+<h3>Profile algorithms</h3>
+
+```
+npm start
+```
+
+<h3>Test algorithms</h3>
+
+```
+npm test
+```
