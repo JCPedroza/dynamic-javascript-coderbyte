@@ -8,13 +8,13 @@ const n = 40
 const argArray = [n]
 const repetitions = 5
 
-const fibFunInfo = [
+const probileSubjects = [
   fibFor,
   fibRecursive,
   fibMemo,
   fibMinimal
 ]
 
-const profileFibonacci = () => profile(fibFunInfo, argArray, repetitions)
+const profileFibonacci = () => profile(probileSubjects, argArray, repetitions)
 
 module.exports = profileFibonacci

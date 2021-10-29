@@ -11,13 +11,13 @@ const shuffleArray = (array) => {
   }
 }
 
-const profileFunction = (funInfo, argArray) => {
+const profileFunction = (subject, argArray) => {
   if (verbose) {
-    console.log(`  profiling ${funInfo.id} with args ${argArray}`)
+    console.log(`  profiling ${subject.id} with args ${argArray}`)
   }
 
   const start = performance.now()
-  const result = funInfo.fun(...argArray)
+  const result = subject.fun(...argArray)
   const elapsed = performance.now() - start
 
   if (verbose) {
@@ -27,7 +27,7 @@ const profileFunction = (funInfo, argArray) => {
   return elapsed
 }
 
-const profile = (funInfoArray, argArray, repetitions) => {
+const profile = (profileSubjects, argArray, repetitions) => {
   const results = {}
 
   for (let round = 1; round <= repetitions; round++) {
@@ -35,15 +35,15 @@ const profile = (funInfoArray, argArray, repetitions) => {
       console.log(`starting round ${round} of ${repetitions}`)
     }
 
-    shuffleArray(funInfoArray)
+    shuffleArray(profileSubjects)
 
-    funInfoArray.forEach(funInfo => {
-      results[funInfo.id] ??= { total: 0 }
-      results[funInfo.id].total += profileFunction(funInfo, argArray)
+    profileSubjects.forEach(subject => {
+      results[subject.id] ??= { total: 0 }
+      results[subject.id].total += profileFunction(subject, argArray)
     })
 
-    funInfoArray.forEach(funInfo => {
-      results[funInfo.id].average = results[funInfo.id].total / repetitions
+    profileSubjects.forEach(subject => {
+      results[subject.id].average = results[subject.id].total / repetitions
     })
   }
 
