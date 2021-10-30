@@ -27,12 +27,12 @@ const profileFunction = (subject, argArray) => {
   return elapsed
 }
 
-const profile = (profileSubjects, argArray, repetitions) => {
+const profile = (profileSubjects, { argArray, iterations }) => {
   const results = {}
 
-  for (let round = 1; round <= repetitions; round++) {
+  for (let round = 1; round <= iterations; round++) {
     if (verbose) {
-      console.log(`starting round ${round} of ${repetitions}`)
+      console.log(`starting round ${round} of ${iterations}`)
     }
 
     shuffleArray(profileSubjects)
@@ -43,7 +43,7 @@ const profile = (profileSubjects, argArray, repetitions) => {
     })
 
     profileSubjects.forEach(subject => {
-      results[subject.id].average = results[subject.id].total / repetitions
+      results[subject.id].average = results[subject.id].total / iterations
     })
   }
 
