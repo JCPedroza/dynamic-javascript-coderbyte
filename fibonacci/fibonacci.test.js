@@ -1,28 +1,23 @@
-const fibForLoop = require('./fibonacci-for')
-const fibRecursive = require('./fibonacci-recursive')
-const fibRecursiveMemo = require('./fibonacci-recursive-memo')
-const fibRecursiveMinimal = require('./fibonacci-recursive-minimal')
-
 const testSubjects = [
-  fibForLoop,
-  fibRecursive,
-  fibRecursiveMemo,
-  fibRecursiveMinimal
+  require('./fibonacci-tabulation-small')
+  // require('./fibonacci-recursive'),
+  // require('./fibonacci-recursive-memo'),
+  // require('./fibonacci-recursive-minimal')
 ]
 
-const checkFirstFiboNums = (fiboFunction) => {
-  const inputs = [-1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  const expectedOutputs = [1, 1, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
-  const results = inputs.map(input => fiboFunction(input))
+const checkFirstFiboNums = (testSubject) => {
+  const inputs = [-1, 0, 1, 2, 3, 4, 5, 6.13, 7.725]
+  const expectedOutputs = [undefined, 0, 1, 1, 2, 3, 5, 8, 13]
+  const results = inputs.map(input => testSubject.fun(input))
 
   expect(results).toEqual(expectedOutputs)
 }
 
-const buildTestInfo = (functionId) =>
-  `${functionId} fib(n) calculates the first fibonacci numbers`
+const buildTestInfo = (testSubject) =>
+  `${testSubject.id} fib(n) calculates the first fibonacci numbers`
 
-const runTest = (funInfo) => test(buildTestInfo(funInfo.id), () => {
-  checkFirstFiboNums(funInfo.fun)
+const runTest = (testSubject) => test(buildTestInfo(testSubject), () => {
+  checkFirstFiboNums(testSubject)
 })
 
-testSubjects.forEach(funInfo => runTest(funInfo))
+testSubjects.forEach(testSubject => runTest(testSubject))
