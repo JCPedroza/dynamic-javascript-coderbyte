@@ -1,8 +1,8 @@
 const testSubjects = [
-  require('./fibonacci-tabulation-small')
-  // require('./fibonacci-recursive'),
-  // require('./fibonacci-recursive-memo'),
-  // require('./fibonacci-recursive-minimal')
+  require('./fibonacci-tabulation-small'),
+  require('./fibonacci-recursive'),
+  require('./fibonacci-recursive-memo'),
+  require('./fibonacci-recursive-minimal')
 ]
 
 const checkFirstFiboNums = (testSubject) => {
