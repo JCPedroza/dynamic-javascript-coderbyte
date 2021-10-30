@@ -4,6 +4,12 @@ const { floor, random } = Math
 
 const verbose = true
 
+const updateLogLine = (string) => {
+  string.split('\n').forEach(_ => process.stdout.clearLine())
+  process.stdout.cursorTo(0)
+  process.stdout.write(string)
+}
+
 const shuffleArray = (array) => {
   for (let pivot = array.length - 1; pivot > 0; pivot--) {
     const swap = floor(random() * (pivot + 1))
@@ -11,18 +17,17 @@ const shuffleArray = (array) => {
   }
 }
 
-const profileFunction = (subject, argArray) => {
+const profileFunction = (subject, argArray, round, iterations) => {
   if (verbose) {
-    console.log(`  profiling ${subject.id} with args ${argArray}`)
+    const logId = `profiling ${subject.fun.name} ${subject.id}`
+    const logRound = `round ${round} of ${iterations}`
+    const logLine = `${logId} ${logRound}`
+    updateLogLine(logLine)
   }
 
   const start = performance.now()
-  const result = subject.fun(...argArray)
+  subject.fun(...argArray)
   const elapsed = performance.now() - start
-
-  if (verbose) {
-    console.log(`  result is: ${result}\n`)
-  }
 
   return elapsed
 }
@@ -31,15 +36,12 @@ const profile = (profileSubjects, { argArray, iterations }) => {
   const results = {}
 
   for (let round = 1; round <= iterations; round++) {
-    if (verbose) {
-      console.log(`starting round ${round} of ${iterations}`)
-    }
-
     shuffleArray(profileSubjects)
 
     profileSubjects.forEach(subject => {
       results[subject.id] ??= { total: 0 }
-      results[subject.id].total += profileFunction(subject, argArray)
+      results[subject.id].total +=
+        profileFunction(subject, argArray, round, iterations)
     })
 
     profileSubjects.forEach(subject => {
@@ -50,4 +52,25 @@ const profile = (profileSubjects, { argArray, iterations }) => {
   return Object.entries(results).sort((a, b) => a[1].total - b[1].total)
 }
 
-module.exports = profile
+const profileResultToStr = (profileResult, decimalPlaces = 3) => {
+  const idStr = profileResult[0]
+  const totalStr = profileResult[1].total.toFixed(decimalPlaces)
+  const averageStr = profileResult[1].average.toFixed(decimalPlaces)
+
+  const idLine = `${idStr}\n`
+  const totalLine = `total: ${totalStr} ms\n`
+  const averageLine = `average: ${averageStr} ms\n`
+
+  return `${idLine}${totalLine}${averageLine}\n`
+}
+
+const printProfileResults = (profileResults) => {
+  const reducer = (acc, cur) => `${acc}${profileResultToStr(cur)}`
+  const profileResultsStr = profileResults.reduce(reducer, '')
+  console.log(`\n${profileResultsStr}`)
+}
+
+module.exports = {
+  profile,
+  printProfileResults
+}
