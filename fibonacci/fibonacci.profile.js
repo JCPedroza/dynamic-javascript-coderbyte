@@ -1,20 +1,17 @@
 const profile = require('../profile')
-const fibFor = require('./fibonacci-for')
-const fibRecursive = require('./fibonacci-recursive')
-const fibMemo = require('./fibonacci-recursive-memo')
-const fibMinimal = require('./fibonacci-recursive-minimal')
 
-const n = 40
-const argArray = [n]
-const repetitions = 5
-
-const probileSubjects = [
-  fibFor,
-  fibRecursive,
-  fibMemo,
-  fibMinimal
+const profileSubjects = [
+  require('./fibonacci-tabulation-small')
+//  require('./fibonacci-recursive'),
+//  require('./fibonacci-recursive-memo'),
+//  require('./fibonacci-recursive-minimal')
 ]
 
-const profileFibonacci = () => profile(probileSubjects, argArray, repetitions)
+const profileSpec = {
+  argArray: [40],
+  iterations: 5
+}
+
+const profileFibonacci = () => profile(profileSubjects, profileSpec)
 
 module.exports = profileFibonacci
