@@ -1,5 +1,5 @@
+const { printProfileResults } = require('./profile')
+
 const profileFibonacci = require('./fibonacci/fibonacci.profile')
 
-const fibonacciResults = profileFibonacci()
-
-console.log(fibonacciResults)
+printProfileResults(profileFibonacci())
