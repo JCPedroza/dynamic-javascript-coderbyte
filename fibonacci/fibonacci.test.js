@@ -1,4 +1,5 @@
 const testSubjects = [
+  require('./fibonacci-clike'),
   require('./fibonacci-recursive-memo'),
   require('./fibonacci-recursive-minimal'),
   require('./fibonacci-recursive'),
