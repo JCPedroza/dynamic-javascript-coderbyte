@@ -7,11 +7,11 @@
  */
 
 const fib = (n) => {
-  n = Math.floor(n)
   if (n < 0) return undefined
+  n = Math.floor(n)
   if (n < 2) return n
 
-  const fibNums = [1, 1] // [last, current]
+  const fibNums = [1, 1]
   for (let round = 2; round < n; round++) {
     [fibNums[0], fibNums[1]] = [fibNums[1], fibNums[0] + fibNums[1]]
   }
