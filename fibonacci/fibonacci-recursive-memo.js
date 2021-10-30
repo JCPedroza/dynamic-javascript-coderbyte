@@ -1,9 +1,21 @@
-const fib = (n, memo = {}) => {
-  if (n in memo) return memo[n]
-  if (n < 3) return 1
+/**
+ * Calculates the nth Fibonacci number.
+ * Uses the recursion and memoization patterns.
+ * Time complexity: O(n)
+ * Memory complexity: O(n) (number of levels of the recursion tree)
+ */
 
-  memo[n] = fib(n - 1, memo) + fib(n - 2, memo)
-  return memo[n]
+const fib = (n) => {
+  if (n < 0) return undefined
+  n = Math.floor(n)
+
+  const fibRecursion = (n, memo = { 0: 0, 1: 1 }) => {
+    if (n in memo) return memo[n]
+    memo[n] = fibRecursion(n - 1, memo) + fibRecursion(n - 2, memo)
+    return memo[n]
+  }
+
+  return fibRecursion(n)
 }
 
 module.exports = {
