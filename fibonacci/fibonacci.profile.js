@@ -1,4 +1,4 @@
-const profile = require('../profile')
+const { profile } = require('../profile')
 
 const profileSubjects = [
   require('./fibonacci-tabulation'),
@@ -9,8 +9,8 @@ const profileSubjects = [
 ]
 
 const profileSpec = {
-  argArray: [40],
-  iterations: 5
+  argArray: [35],
+  iterations: 10
 }
 
 const profileFibonacci = () => profile(profileSubjects, profileSpec)
