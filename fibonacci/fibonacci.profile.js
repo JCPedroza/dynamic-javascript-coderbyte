@@ -1,16 +1,17 @@
 const { profile } = require('../profile')
 
 const profileSubjects = [
-  require('./fibonacci-tabulation'),
-  require('./fibonacci-tabulation-small'),
-  require('./fibonacci-recursive'),
   require('./fibonacci-recursive-memo'),
-  require('./fibonacci-recursive-minimal')
+  require('./fibonacci-recursive-minimal'),
+  require('./fibonacci-recursive'),
+  require('./fibonacci-reduce-iterator'),
+  require('./fibonacci-tabulation-small'),
+  require('./fibonacci-tabulation')
 ]
 
 const profileSpec = {
-  argArray: [35],
-  iterations: 10
+  argArray: [37],
+  iterations: 15
 }
 
 const profileFibonacci = () => profile(profileSubjects, profileSpec)
