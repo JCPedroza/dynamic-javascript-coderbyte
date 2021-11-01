@@ -12,11 +12,11 @@ const profileSubjects = [
 ]
 
 const scenarios = {
-  micro: { argArray: [5], iterations: 10000 },
-  small: { argArray: [15], iterations: 1000 },
-  medium: { argArray: [1], iterations: 1 },
-  large: { argArray: [50], iterations: 1000 },
-  giant: { argArray: [100], iterations: 1000 }
+  micro: { argArray: [10], iterations: 5000 },
+  small: { argArray: [20], iterations: 2000 },
+  medium: { argArray: [35], iterations: 5 },
+  large: { argArray: [50], iterations: 2000 },
+  giant: { argArray: [70], iterations: 2000 }
 }
 
 const profileFibonacci = () => profileScenarios(profileSubjects, scenarios)

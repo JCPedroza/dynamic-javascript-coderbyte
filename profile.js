@@ -82,14 +82,9 @@ const profileScenarios = (profileSubjects, scenarios) => {
 
 const profileResultToStr = (profileResult, decimalPlaces = 4) => {
   const idStr = profileResult[0]
-  const totalStr = profileResult[1].total.toFixed(decimalPlaces)
   const averageStr = profileResult[1].average.toFixed(decimalPlaces)
 
-  const idLine = `${idStr}\n`
-  const totalLine = `total: ${totalStr} ms\n`
-  const averageLine = `average: ${averageStr} ms\n`
-
-  return `${idLine}${totalLine}${averageLine}\n`
+  return `${idStr}: ${averageStr} ms\n`
 }
 
 const printProfileResults = (profileResults) => {
