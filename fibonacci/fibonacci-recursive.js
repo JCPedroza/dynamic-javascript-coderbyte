@@ -3,8 +3,9 @@
  * Uses the recursion pattern.
  * Time complexity: O(2^n)
  * Memory complexity: O(n) (number of levels of the recursion tree)
+ * @param {Number} n Target Fibonacci number (non-negative)
+ * @returns The nth Fibonacci number
  */
-
 const fib = (n) => {
   if (n < 0) return undefined
   n = Math.floor(n)

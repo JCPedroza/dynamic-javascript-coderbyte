@@ -3,8 +3,9 @@
  * Uses the tabulation pattern.
  * Time complexity: O(n)
  * Memory complexity: O(n)
+ * @param {Number} n Target Fibonacci number (non-negative)
+ * @returns The nth Fibonacci number
  */
-
 const fib = (n) => {
   if (n < 0) return undefined
   n = Math.floor(n)
