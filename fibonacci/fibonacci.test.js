@@ -9,19 +9,43 @@ const testSubjects = [
   require('./fibonacci-tabulation')
 ]
 
-const checkFirstFiboNums = (testSubject) => {
-  const inputs = [-1, 0, 1, 2, 3, 4, 5, 6.13, 7.725]
-  const expectedOutputs = [undefined, 0, 1, 1, 2, 3, 5, 8, 13]
+const firstFiboNums = {
+  buildTestLabel: (testSubject) =>
+    `${testSubject.id} fib(n) calculates the first fibonacci numbers`,
+
+  io: {
+    inputs: [-1, 0, 1, 2, 3, 4, 5, 6.13, 7.725],
+    expectedOutputs: [undefined, 0, 1, 1, 2, 3, 5, 8, 13]
+  }
+}
+
+const bigFiboNums = {
+  buildTestLabel: (testSubject) =>
+    `${testSubject.id} fib(n) calculates big fibonacci numbers`,
+
+  io: {
+    inputs: [20, 40, 50],
+    expectedOutputs: [6_765, 63_245_986, 12_586_269_025]
+  }
+}
+
+const scenarios = [firstFiboNums, bigFiboNums]
+
+const checkScenario = (testSubject, scenario) => {
+  const inputs = scenario.io.inputs
+  const expectedOutputs = scenario.io.expectedOutputs
   const results = inputs.map(input => testSubject.fun(input))
 
   expect(results).toEqual(expectedOutputs)
 }
 
-const buildTestInfo = (testSubject) =>
-  `${testSubject.id} fib(n) calculates the first fibonacci numbers`
+const runTest = (testSubject, scenario) => {
+  test(scenario.buildTestLabel(testSubject), () => {
+    checkScenario(testSubject, scenario)
+  })
+}
 
-const runTest = (testSubject) => test(buildTestInfo(testSubject), () => {
-  checkFirstFiboNums(testSubject)
-})
-
-testSubjects.forEach(testSubject => runTest(testSubject))
+scenarios.forEach(
+  scenario => testSubjects.forEach(
+    subject => runTest(subject, scenario))
+)
