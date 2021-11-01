@@ -9,7 +9,7 @@
 
   "scripts": {
     "start": "node index.js",
-    "test": "npx standard --verbose && npx jest"
+    "test": "npx standard --verbose && npx jest --verbose"
   },
 
   "keywords": [
