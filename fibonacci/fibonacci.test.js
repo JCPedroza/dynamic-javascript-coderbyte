@@ -16,36 +16,48 @@ const firstFiboNums = {
   io: {
     inputs: [-1, 0, 1, 2, 3, 4, 5, 6.13, 7.725],
     expectedOutputs: [undefined, 0, 1, 1, 2, 3, 5, 8, 13]
-  }
+  },
+
+  targetScenarios: ['micro']
 }
 
-const bigFiboNums = {
+const largeFiboNums = {
   buildTestLabel: (testSubject) =>
-    `${testSubject.id} fib(n) calculates big fibonacci numbers`,
+    `${testSubject.id} fib(n) calculates large fibonacci numbers`,
 
   io: {
-    inputs: [20, 40, 50],
-    expectedOutputs: [6_765, 63_245_986, 12_586_269_025]
-  }
+    inputs: [20, 40, 50, 70],
+    expectedOutputs: [6_765, 102_334_155, 12_586_269_025, 190_392_490_709_135]
+  },
+
+  targetScenarios: ['large', 'giant']
 }
 
-const scenarios = [firstFiboNums, bigFiboNums]
+const testCases = [firstFiboNums, largeFiboNums]
 
-const checkScenario = (testSubject, scenario) => {
-  const inputs = scenario.io.inputs
-  const expectedOutputs = scenario.io.expectedOutputs
+const checkTestCase = (testSubject, testCase) => {
+  const inputs = testCase.io.inputs
+  const expectedOutputs = testCase.io.expectedOutputs
   const results = inputs.map(input => testSubject.fun(input))
 
   expect(results).toEqual(expectedOutputs)
 }
 
-const runTest = (testSubject, scenario) => {
-  test(scenario.buildTestLabel(testSubject), () => {
-    checkScenario(testSubject, scenario)
+const runTest = (testSubject, testCase) => {
+  test(testCase.buildTestLabel(testSubject), () => {
+    checkTestCase(testSubject, testCase)
   })
 }
 
-scenarios.forEach(
-  scenario => testSubjects.forEach(
-    subject => runTest(subject, scenario))
-)
+const runAllTests = (testSubjects, testCases) => {
+  testCases.forEach(testCase => {
+    const validTestSubjects = testSubjects.filter(subject =>
+      testCase.targetScenarios.every(scenario =>
+        subject.profileScenarios.includes(scenario))
+    )
+
+    validTestSubjects.forEach(subject => runTest(subject, testCase))
+  })
+}
+
+runAllTests(testSubjects, testCases)
