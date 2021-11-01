@@ -1,6 +1,7 @@
 const { profile } = require('../profile')
 
 const profileSubjects = [
+  require('./fibonacci-analytic'),
   require('./fibonacci-clike'),
   require('./fibonacci-recursive-memo'),
   require('./fibonacci-recursive-minimal'),
