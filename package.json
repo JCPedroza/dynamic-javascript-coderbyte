@@ -9,12 +9,14 @@
 
   "scripts": {
     "start": "node index.js",
-    "test": "npx standard --verbose && npx jest --verbose"
+    "test": "npx standard && npx jest"
   },
 
   "keywords": [
     "javascript",
-    "dynamic-programming"
+    "dynamic-programming",
+    "algorithms",
+    "data-structures"
   ],
 
   "author": "JCPedroza",
