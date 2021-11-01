@@ -2,7 +2,7 @@
  * Calculates the nth Fibonacci number.
  * Uses the recursion pattern.
  * Time complexity: O(2^n)
- * Memory complexity: O(n) (number of levels of the recursion tree)
+ * Space complexity: O(n) (number of levels of the recursion tree)
  * @param {Number} n Target Fibonacci number (non-negative)
  * @returns The nth Fibonacci number
  */
@@ -20,5 +20,7 @@ const fib = (n) => {
 
 module.exports = {
   fun: fib,
-  id: 'recursive'
+  id: 'recursive',
+  // too slow for large and giant
+  profileScenarios: ['micro', 'small', 'medium']
 }

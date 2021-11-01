@@ -2,7 +2,7 @@
  * Calculates the nth Fibonacci number.
  * Uses the tabulation pattern.
  * Time complexity: O(n)
- * Memory complexity: O(n)
+ * Space complexity: O(n)
  * @param {Number} n Target Fibonacci number (non-negative)
  * @returns The nth Fibonacci number
  */
@@ -23,5 +23,6 @@ const fib = (n) => {
 
 module.exports = {
   fun: fib,
-  id: 'tabulation'
+  id: 'tabulation',
+  profileScenarios: ['micro', 'small', 'medium', 'large', 'giant']
 }

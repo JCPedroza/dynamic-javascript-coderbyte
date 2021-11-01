@@ -3,7 +3,7 @@
  * Uses the tabulation pattern.
  * The array only contains the two last calculated values.
  * Time complexity: O(n)
- * Memory complexity: O(1)
+ * Space complexity: O(1)
  * @param {Number} n Target Fibonacci number (non-negative)
  * @returns The nth Fibonacci number
  */
@@ -22,5 +22,6 @@ const fib = (n) => {
 
 module.exports = {
   fun: fib,
-  id: 'tabulation small array'
+  id: 'tabulation small array',
+  profileScenarios: ['micro', 'small', 'medium', 'large', 'giant']
 }

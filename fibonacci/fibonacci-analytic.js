@@ -1,10 +1,10 @@
 /**
- * Calculates the nth Fibonacci numbers.
+ * Calculates the nth Fibonacci number.
  * Uses an analytic approach through Binet formula, high
  * values of n can produce incorrect results because of floating-point
  * imprecission.
  * Time complexity: O(log n) (because of exponentiation)
- * Memory complexity: O(1)
+ * Space complexity: O(1)
  * @param {Number} n Target Fibonacci number (non-negative)
  * @returns The nth Fibonacci number
  */
@@ -22,5 +22,7 @@ const fib = (n) => {
 
 module.exports = {
   fun: fib,
-  id: 'analytic'
+  id: 'analytic binet',
+  // too inacurate for giant ?
+  profileScenarios: ['micro', 'small', 'medium', 'large', 'giant']
 }

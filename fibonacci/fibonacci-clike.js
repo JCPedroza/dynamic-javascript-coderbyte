@@ -3,7 +3,7 @@
  * Uses a for loop and three variables, one of which is a buffer
  * variable.
  * Time complexity: O(n)
- * Memory complexity: O(1)
+ * Space complexity: O(1)
  * @param {Number} n Target Fibonacci number (non-negative)
  * @returns {Number} The nth Fibonacci number
  */
@@ -25,5 +25,6 @@ function fib (n) {
 
 module.exports = {
   fun: fib,
-  id: 'clike'
+  id: 'clike',
+  profileScenarios: ['micro', 'small', 'medium', 'large', 'giant']
 }

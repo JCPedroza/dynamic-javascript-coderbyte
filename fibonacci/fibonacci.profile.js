@@ -1,4 +1,4 @@
-const { profile } = require('../profile')
+const { profileScenarios } = require('../profile')
 
 const profileSubjects = [
   require('./fibonacci-analytic'),
@@ -11,11 +11,14 @@ const profileSubjects = [
   require('./fibonacci-tabulation')
 ]
 
-const profileSpec = {
-  argArray: [37],
-  iterations: 15
+const scenarios = {
+  micro: { argArray: [5], iterations: 10000 },
+  small: { argArray: [15], iterations: 1000 },
+  medium: { argArray: [1], iterations: 1 },
+  large: { argArray: [50], iterations: 1000 },
+  giant: { argArray: [100], iterations: 1000 }
 }
 
-const profileFibonacci = () => profile(profileSubjects, profileSpec)
+const profileFibonacci = () => profileScenarios(profileSubjects, scenarios)
 
 module.exports = profileFibonacci
