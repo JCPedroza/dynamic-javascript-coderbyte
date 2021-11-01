@@ -70,13 +70,14 @@ const profile = (profileSubjects, { argArray, iterations }) => {
 const profileScenarios = (profileSubjects, scenarios) => {
   const scenarioArray = Object.entries(scenarios)
   const results = []
+
   scenarioArray.forEach(scenario => {
-    const subjectFilter = (subject) => {
-      return subject.profileScenarios.includes(scenario[0])
-    }
+    const subjectFilter = (subject) =>
+      subject.profileScenarios.includes(scenario[0])
     const targetSubjects = profileSubjects.filter(subjectFilter)
     results.push(profile(targetSubjects, scenario[1]))
   })
+
   return results
 }
 
