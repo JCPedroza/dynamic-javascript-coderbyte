@@ -57,26 +57,29 @@ const profile = (profileSubjects, { argArray, iterations }) => {
     })
   }
   writeLogLine()
-  console.log()
 
   profileSubjects.forEach(subject => {
     results[subject.id].average = results[subject.id].total / iterations
   })
 
-  return Object.entries(results).sort((a, b) => a[1].total - b[1].total)
+  return Object
+    .entries(results)
+    .sort((a, b) => a[1].total - b[1].total)
 }
 
 // this needs refactor XD
 const profileScenarios = (profileSubjects, scenarios) => {
-  const scenarioArray = Object.entries(scenarios)
   const results = []
-
-  scenarioArray.forEach(scenario => {
+  const profileScenario = ([scenarioName, scenarioSpec]) => {
     const subjectFilter = (subject) =>
-      subject.profileScenarios.includes(scenario[0])
+      subject.profileScenarios.includes(scenarioName)
     const targetSubjects = profileSubjects.filter(subjectFilter)
-    results.push(profile(targetSubjects, scenario[1]))
-  })
+    results.push(profile(targetSubjects, scenarioSpec))
+  }
+
+  Object
+    .entries(scenarios)
+    .forEach(profileScenario)
 
   return results
 }
@@ -94,8 +97,10 @@ const printProfileResults = (profileResults) => {
   console.log(`\n${profileResultsStr}`)
 }
 
+const buildProfiler = (subjects, scenarios) =>
+  () => profileScenarios(subjects, scenarios)
+
 module.exports = {
-  profile,
-  profileScenarios,
+  buildProfiler,
   printProfileResults
 }

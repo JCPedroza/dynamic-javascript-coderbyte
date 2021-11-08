@@ -1,4 +1,4 @@
-const { profileScenarios } = require('../profile')
+const { buildProfiler } = require('../profile')
 
 const profileSubjects = [
   require('./fibonacci-analytic'),
@@ -19,6 +19,4 @@ const scenarios = {
   giant: { argArray: [70], iterations: 2000 }
 }
 
-const profileFibonacci = () => profileScenarios(profileSubjects, scenarios)
-
-module.exports = profileFibonacci
+module.exports = buildProfiler(profileSubjects, scenarios)
