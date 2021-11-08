@@ -5,6 +5,7 @@
 const { performance } = require('perf_hooks')
 
 const { floor, random } = Math
+const { stdout } = process
 
 /**
  * Randomizes the order of the items in the input array in-place
@@ -19,9 +20,9 @@ const shuffleArray = (array) => {
 }
 
 const writeLogLine = (string = '') => {
-  process.stdout.clearLine()
-  process.stdout.cursorTo(0)
-  process.stdout.write(string)
+  stdout.clearLine()
+  stdout.cursorTo(0)
+  stdout.write(string)
 }
 
 const buildLogLine = (subject, round, iterations) => {
@@ -62,14 +63,19 @@ const profile = (profileSubjects, { argArray, iterations }) => {
     results[subject.id].average = results[subject.id].total / iterations
   })
 
-  return Object
+  const orderedResults = Object
     .entries(results)
     .sort((a, b) => a[1].total - b[1].total)
+
+  return {
+    spec: { argArray, iterations },
+    results: orderedResults
+  }
 }
 
-// this needs refactor XD
 const profileScenarios = (profileSubjects, scenarios) => {
   const results = []
+
   const profileScenario = ([scenarioName, scenarioSpec]) => {
     const subjectFilter = (subject) =>
       subject.profileScenarios.includes(scenarioName)
@@ -92,9 +98,11 @@ const profileResultToStr = (profileResult, decimalPlaces = 4) => {
 }
 
 const printProfileResults = (profileResults) => {
+  const { argArray, iterations } = profileResults.spec
+  const header = `arguments: ${argArray} iterations: ${iterations}`
   const reducer = (acc, cur) => `${acc}${profileResultToStr(cur)}`
-  const profileResultsStr = profileResults.reduce(reducer, '')
-  console.log(`\n${profileResultsStr}`)
+  const profileResultsStr = profileResults.results.reduce(reducer, '')
+  console.log(`\n${header}\n${profileResultsStr}`)
 }
 
 const buildProfiler = (subjects, scenarios) =>
